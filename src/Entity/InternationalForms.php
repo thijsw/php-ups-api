@@ -104,6 +104,11 @@ class InternationalForms implements NodeInterface
     /**
      * @var string
      */
+    private $declarationStatement;
+
+    /**
+     * @var string
+     */
     private $currencyCode;
 
     /**
@@ -187,6 +192,9 @@ class InternationalForms implements NodeInterface
             }
             if (isset($attributes->Comments)) {
                 $this->setComments($attributes->Comments);
+            }
+            if (isset($attributes->DeclarationStatement)) {
+                $this->setDeclarationStatement($attributes->DeclarationStatement);
             }
             if (isset($attributes->CurrencyCode)) {
                 $this->setCurrencyCode($attributes->CurrencyCode);
@@ -319,6 +327,9 @@ class InternationalForms implements NodeInterface
         }
         if ($this->getComments() !== null) {
             $node->appendChild($document->createElement('Comments', $this->getComments()));
+        }
+        if ($this->getDeclarationStatement() !== null) {
+            $node->appendChild($document->createElement('DeclarationStatement', $this->getDeclarationStatement()));
         }
         if ($this->getCurrencyCode() !== null) {
             $node->appendChild($document->createElement('CurrencyCode', $this->getCurrencyCode()));
@@ -468,6 +479,26 @@ class InternationalForms implements NodeInterface
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * @param string $statement
+     *
+     * @return $this
+     */
+    public function setDeclarationStatement($statement)
+    {
+        $this->declarationStatement = $statement;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDeclarationStatement()
+    {
+        return $this->declarationStatement;
     }
 
     /**
